@@ -18,6 +18,42 @@ class HomeViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         initViews()
         
     }
+    
+    func refreshTableView(posts: [Post]){
+        self.items = posts
+        self.tableLabel.reloadData()
+    }
+    
+    func apiPostList(){
+        showProgress()
+        AFHttp.get(url: AFHttp.API_POST_LIST, params: AFHttp.paramsEmpty(), handler: { response in
+            self.hideProgress()
+            switch response.result {
+                case .success:
+                    let posts = try! JSONDecoder().decode([Post].self, from: response.data!)
+                    self.refreshTableView(posts: posts)
+            case let .failure(error):
+                print(error)
+            }
+        })
+    }
+    
+    func apiPostDelete(post:Post){
+        showProgress()
+        AFHttp.del(url: AFHttp.API_POST_DELETE + post.id!, params: AFHttp.paramsEmpty(), handler: {response in
+            self.hideProgress()
+            switch response.result {
+            case .success:
+                print(response.result)
+                self.apiPostList()
+            case let .failure(error):
+                print(error)
+            }
+        })
+        
+    }
+    
+    
 
     // MARK: - Method
 
@@ -27,15 +63,15 @@ class HomeViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         
         
         initNavigation()
-        items.append(Post(title: "PDP", body: "Academy"))
-        items.append(Post(title: "Muhammadjon", body: "Mamarasulov"))
+        apiPostList()
+       
 
     }
     func initNavigation(){
         let refresh = UIImage(named: "ic_refresh")
         let add = UIImage(named: "ic_add")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: refresh, style: .plain, target: self, action: #selector(rightTapped))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: add, style: .plain, target: self, action: #selector(leftTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: refresh, style: .plain, target: self, action: #selector(leftTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: add, style: .plain, target: self, action: #selector(rightTapped))
         title = "MVC Pattern"
     }
     
@@ -47,14 +83,14 @@ class HomeViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     // Open new page with present
     func callEditViewController(){
-        let vc = EditViewController(nibName: "CreateViewController", bundle: nil)
-        let navigationController = UINavigationController(rootViewController: vc)
+        let homeView = EditViewController(nibName: "EditViewController", bundle: nil)
+        let navigationController = UINavigationController(rootViewController: homeView)
         self.present(navigationController, animated: true, completion: nil)
     }
         
     // MARK: - Action
     @objc func leftTapped(){
-        
+        apiPostList()
     }
     @objc func rightTapped(){
         callCreateViewController()
@@ -94,6 +130,7 @@ class HomeViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         return UIContextualAction(style: .normal, title: "Delete") {(action, swipeButton, completion) in
             print ("DELETE HERE")
             completion(true)
+            self.apiPostDelete(post: post)
         }
     }
     

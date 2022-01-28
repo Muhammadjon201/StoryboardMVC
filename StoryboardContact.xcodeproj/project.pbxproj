@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D45E263A27A38A0A0058EEB0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45E263927A38A0A0058EEB0 /* Network.swift */; };
+		D45E263E27A38E2F0058EEB0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D45E263D27A38E2F0058EEB0 /* Alamofire */; };
+		D45E264227A38E7E0058EEB0 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = D45E264127A38E7E0058EEB0 /* JGProgressHUD */; };
 		D4D0555127A139AF00F68479 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D0555027A139AF00F68479 /* AppDelegate.swift */; };
 		D4D0555327A139AF00F68479 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D0555227A139AF00F68479 /* SceneDelegate.swift */; };
 		D4D0555827A139AF00F68479 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4D0555627A139AF00F68479 /* Main.storyboard */; };
@@ -25,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D45E263927A38A0A0058EEB0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		D4D0554D27A139AF00F68479 /* StoryboardContact.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoryboardContact.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4D0555027A139AF00F68479 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4D0555227A139AF00F68479 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,12 +53,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D45E264227A38E7E0058EEB0 /* JGProgressHUD in Frameworks */,
+				D45E263E27A38E2F0058EEB0 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D45E263827A389E30058EEB0 /* network */ = {
+			isa = PBXGroup;
+			children = (
+				D45E263927A38A0A0058EEB0 /* Network.swift */,
+			);
+			path = network;
+			sourceTree = "<group>";
+		};
 		D4D0554427A139AF00F68479 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +88,7 @@
 		D4D0554F27A139AF00F68479 /* StoryboardContact */ = {
 			isa = PBXGroup;
 			children = (
+				D45E263827A389E30058EEB0 /* network */,
 				D4D0556A27A13A1400F68479 /* Cell */,
 				D4D0556927A13A0300F68479 /* Model */,
 				D4D0556827A139F100F68479 /* Controllers */,
@@ -142,6 +157,10 @@
 			dependencies = (
 			);
 			name = StoryboardContact;
+			packageProductDependencies = (
+				D45E263D27A38E2F0058EEB0 /* Alamofire */,
+				D45E264127A38E7E0058EEB0 /* JGProgressHUD */,
+			);
 			productName = StoryboardContact;
 			productReference = D4D0554D27A139AF00F68479 /* StoryboardContact.app */;
 			productType = "com.apple.product-type.application";
@@ -169,6 +188,10 @@
 				Base,
 			);
 			mainGroup = D4D0554427A139AF00F68479;
+			packageReferences = (
+				D45E263C27A38E2E0058EEB0 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				D45E264027A38E7E0058EEB0 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+			);
 			productRefGroup = D4D0554E27A139AF00F68479 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -205,6 +228,7 @@
 				D4D0555127A139AF00F68479 /* AppDelegate.swift in Sources */,
 				D4D0558427A1497C00F68479 /* PostTableViewCell.swift in Sources */,
 				D4D0555327A139AF00F68479 /* SceneDelegate.swift in Sources */,
+				D45E263A27A38A0A0058EEB0 /* Network.swift in Sources */,
 				D4D0556D27A13A3F00F68479 /* HomeViewController.swift in Sources */,
 				D4D0557C27A13A8600F68479 /* BaseViewController.swift in Sources */,
 				D4D0558027A140C500F68479 /* Post.swift in Sources */,
@@ -409,6 +433,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D45E263C27A38E2E0058EEB0 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		D45E264027A38E7E0058EEB0 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D45E263D27A38E2F0058EEB0 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D45E263C27A38E2E0058EEB0 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		D45E264127A38E7E0058EEB0 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D45E264027A38E7E0058EEB0 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D4D0554527A139AF00F68479 /* Project object */;
 }
